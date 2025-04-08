@@ -1,4 +1,5 @@
 'use client'
+import { Feedback } from '@/types/feedbackTypes'; // Import the Feedback type
 
 import { useQuery } from '@tanstack/react-query'
 import { getAllFeedbacks } from '@/actions/feedbackActions'
@@ -13,7 +14,7 @@ import LoadingSkeleton from '@/components/LoadingSkeleton'
 export default function AdminDashboard() {
   const router = useRouter()
 
-  const { data: feedbacks, isError ,isLoading } = useQuery({
+  const { data: feedbacks, isError, isLoading } = useQuery<Feedback[]>({
     queryKey: ['feedbacks'],
     queryFn: async () => {
       const response = await getAllFeedbacks()
